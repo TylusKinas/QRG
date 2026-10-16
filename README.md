@@ -158,13 +158,6 @@ A QR code can carry any program, so **every game is untrusted code**:
 page, other windows, popups or the network. It only tests whether an access is *possible*; it reads nothing and sends nothing. In
 normal play every line must say BLOCKED. Serving the page from its own (sub)domain is still wise, so that nothing else lives on the origin.
 
-## Roadmap ideas
-
-* Sprite sheets and tile maps as library helpers
-* Visual editor: copy/paste rules, undo, animation frames
-* Reminders for the pet (push notifications need a server; not planned)
-* More compression: a match model, a larger dictionary built from community games
-
 ## Contributing
 
 Issues and pull requests are welcome. Please run `npm run build && npm test` before sending a change, and keep `src/` free of
