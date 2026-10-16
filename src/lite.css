@@ -1,0 +1,9 @@
+/* The player page (index.php): an intro screen and the game view. Builds on retro.css. */
+#intro{align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;overflow:auto}
+#intro .logo{font-size:56px;letter-spacing:8px;color:var(--y);text-shadow:5px 5px 0 var(--p);margin:0;padding:0}
+#intro .sub{color:var(--c);letter-spacing:2px;font-size:14px}
+#intro p{max-width:30em;margin:0;font-weight:400;font-size:14px;line-height:1.5}
+#intro .box{border:3px solid var(--s);background:var(--n);padding:12px 14px;box-shadow:5px 5px 0 var(--k)}
+#intro .links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+#intro small{color:var(--s);font-weight:400}
+#bad{color:var(--r)}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>QRG – extras</title>
+<!-- GENERATED FILE – edit src/, games/ and tools/, then run: npm run build -->
+<style>
+/*@CSS@*/
+</style></head><body>
+
+<nav id="modes">
+ <button data-m="H">Games</button><button data-m="E">Code</button><button data-m="V">Visual</button><button data-m="R">Reader</button>
+</nav>
+
+<main id="H" class="v on dither">
+ <h1>QRG</h1>
+ <div class="note" style="padding:0 10px">Sizes are counted without comments: comments are removed before a game goes into a QR code.</div>
+ <div id="gr"></div>
+ <nav class="bar"><button id="hh">? Language reference</button></nav>
+</main>
+
+<main id="Q" class="v dither">
+ <h1 id="qt"></h1>
+ <div class="qv"><canvas id="qc"></canvas><div class="inf" id="qi"></div></div>
+ <nav class="bar"><button id="qb">←</button><button id="qp">▶</button><button id="qe">✎</button><button id="ql">🔗</button></nav>
+</main>
+
+<main id="E" class="v">
+ <iframe id="ev"></iframe>
+ <div id="tb"></div>
+ <textarea id="ta" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="soft"></textarea>
+ <div id="ctx"></div>
+ <div id="sugg"></div>
+ <div id="hint"></div>
+ <div id="eerr"></div>
+ <div class="inf" id="inf2"></div>
+ <nav class="bar"><button id="eb">←</button><button id="er" class="pri">▶ Play</button><button id="eq">QR</button><button id="el">🔗</button><button id="eh">?</button><button id="en">New</button></nav>
+ <div class="md" id="cm"><div><h2>Pick a color</h2><div id="pg"></div><button id="cx">Close</button></div></div>
+ <div class="md" id="sm"><div><h2 id="smt">Draw a sprite</h2><div id="sg"></div><div class="row"><button id="sc">Clear</button><button id="si" class="pri">Insert</button><button id="sx">✕</button></div></div></div>
+ <div class="md" id="sn"><div><h2 id="snt">Sound</h2><div class="sndl" id="snl"></div>
+  <div class="sndc">
+   <label>Pitch <input type="range" id="snh" min="80" max="2000" step="10" value="600"><span id="snhv">600 Hz</span></label>
+   <label>Length <input type="range" id="snm" min="20" max="400" step="10" value="120"><span id="snmv">120 ms</span></label>
+   <label>Wave <select id="snw"><option>square</option><option>sine</option><option>sawtooth</option><option>triangle</option></select></label>
+  </div>
+  <div class="row"><button id="snp">▶ Hear</button><button id="sni" class="pri">Insert</button><button id="snx">✕</button></div></div></div>
+</main>
+
+<main id="V" class="v">
+ <div id="vs"><canvas id="vc" width="256" height="240"></canvas><iframe id="vp" hidden></iframe></div>
+ <div id="vt"><button data-t="o" class="on">Objects</button><button data-t="r">Rules</button><button data-t="g">Game</button><button data-t="c">Code</button></div>
+ <div id="vb"></div>
+ <nav class="bar"><button id="vk">←</button><button id="vtst" class="pri">▶ Test</button><button id="vq">QR</button><button id="vf">⤢ Full</button></nav>
+ <div class="md" id="vm"><div id="vmc"></div></div>
+</main>
+
+<main id="R" class="v">
+ <div class="stage"><video id="vd" playsinline muted></video><div id="rfr"></div><div id="rst"></div></div>
+ <div id="rrec"></div>
+ <nav class="bar"><label class="b">📷 Photo<input type="file" id="fi" accept="image/*" hidden></label><button id="rpaste">Paste link</button><button id="rcam">Camera</button></nav>
+</main>
+
+<main id="P" class="v">
+ <iframe id="fm"></iframe>
+ <div class="hud"><button id="px">✕</button><span><button id="pr" title="Forget what this game saved">↺</button> <button id="pe">✎</button></span></div>
+ <div id="blocked"><div>This browser did not start the game inside a protected frame.</div><div class="inf">You can run it without protection. Only do this for games you trust: unprotected code can read this page's data.</div><button id="pu" class="dng">Run without protection</button></div>
+</main>
+
+<div class="md" id="help"><div><h2>Language reference</h2><div id="helpb"></div><button id="helpx">Close</button></div></div>
+
+<script>
+/*@CORE@*/
+</script>
+<script>
+/*@UI@*/
+</script>
+</body></html>

@@ -1,0 +1,72 @@
+/* QRG look: a plain, readable 8-bit style. Hard edges, thick borders, the 16 palette colors, monospace type.
+   Shared by the player (index.php) and the extras (e.html). */
+:root{
+  --k:#000000;--n:#1d2b53;--p:#7e2553;--g:#008751;--b:#ab5236;--d:#5f574f;--s:#c2c3c7;--w:#fff1e8;
+  --r:#ff004d;--o:#ffa300;--y:#ffec27;--l:#00e436;--c:#29adff;--v:#83769c;--k2:#ff77a8;--pe:#ffccaa;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--k);color:var(--w);font:700 14px/1.4 "Courier New",Courier,monospace;overflow:hidden}
+a{color:var(--c)}
+[hidden]{display:none!important}
+
+/* views: every screen is a full-page column */
+.v{display:none;position:fixed;inset:0;flex-direction:column;background:var(--k)}
+.v.on{display:flex}
+
+/* buttons look like chunky pixel keys */
+button,.b,select,input,textarea{font:inherit;border-radius:0}
+button,.b{
+  color:var(--w);background:var(--d);border:2px solid var(--w);padding:10px 8px;text-align:center;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.5px;box-shadow:3px 3px 0 var(--k);text-decoration:none;display:inline-block}
+button:active,.b:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--k)}
+button.pri{background:var(--p)}
+button.dng{background:var(--d)}
+button.on{background:var(--y);color:var(--k);border-color:var(--k)}
+button.sm{padding:6px 8px;font-size:12px}
+button:disabled{opacity:.45;cursor:default}
+
+input,select,textarea{color:var(--y);background:var(--k);border:2px solid var(--s)}
+input[type=checkbox]{accent-color:var(--y)}
+select{color:var(--w);background:var(--n);max-width:100%}
+
+h1{margin:0;padding:12px 12px 6px;font-size:26px;letter-spacing:4px;color:var(--y);text-shadow:3px 3px 0 var(--p)}
+h2{margin:0;font-size:15px;color:var(--y);letter-spacing:1px;text-transform:uppercase}
+
+.bar{display:flex;gap:8px;padding:10px;padding-bottom:max(10px,env(safe-area-inset-bottom));background:var(--n);border-top:3px solid var(--s);flex:0 0 auto}
+.bar>*{flex:1;padding:10px 4px}
+.inf{font-size:12px;color:var(--s);text-align:center;padding:0 10px;white-space:pre-line}
+.err{color:var(--r);font-size:12px}
+.note{font-size:12px;color:var(--s);font-weight:400;margin:4px 0}
+
+/* overlays */
+.md{display:none;position:fixed;inset:0;background:#000c;align-items:center;justify-content:center;z-index:20}
+.md.on{display:flex}
+.md>div{background:var(--n);border:3px solid var(--w);box-shadow:6px 6px 0 var(--k);padding:12px;display:flex;flex-direction:column;gap:12px;
+  max-width:96vw;max-height:92vh;overflow:auto;width:min(560px,96vw)}
+.md .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.md .row>*{flex:1}
+
+/* play view */
+#fm{flex:1;border:0;width:100%;background:var(--k)}
+.hud{position:absolute;top:max(6px,env(safe-area-inset-top));left:6px;right:6px;display:flex;justify-content:space-between;gap:6px;pointer-events:none;z-index:2}
+.hud>*{pointer-events:auto;padding:6px 10px;opacity:.85;background:var(--k)}
+#blocked{position:absolute;inset:0;display:none;flex-direction:column;gap:12px;align-items:center;justify-content:center;background:#000e;padding:24px;text-align:center;z-index:3}
+#blocked.on{display:flex}
+
+/* ---- extra 8-bit flavor ---- */
+/* dithered checkerboard behind menus and the intro */
+.dither{background-color:var(--k);background-image:
+  linear-gradient(45deg,#0d1226 25%,transparent 25%,transparent 75%,#0d1226 75%),
+  linear-gradient(45deg,#0d1226 25%,transparent 25%,transparent 75%,#0d1226 75%);
+  background-size:8px 8px;background-position:0 0,4px 4px}
+/* blinking text cursor after titles */
+@keyframes blink{50%{opacity:0}}
+h1:after{content:"_";animation:blink 1s steps(1) infinite;color:var(--c)}
+@media (prefers-reduced-motion:reduce){h1:after{animation:none}}
+/* chunky pixel scrollbars */
+*{scrollbar-color:var(--s) var(--k);scrollbar-width:thin}
+::-webkit-scrollbar{width:12px;height:12px;background:var(--k)}
+::-webkit-scrollbar-thumb{background:var(--s);border:2px solid var(--k)}
+::-webkit-scrollbar-corner{background:var(--k)}
+/* menu pointer */
+#gr .tile:active:before,.card:active:before{content:"► ";color:var(--y)}
