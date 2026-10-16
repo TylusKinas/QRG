@@ -25,12 +25,10 @@ function eng(code, cfg) {
   let f = 0, last = 0, acc = 0, tc = 0;
 
   const post = m => { try { parent.postMessage(m, '*'); } catch (e) { /* no parent */ } };
-  /* the RESET key appears only for games that use memory */
-  const used = () => { const b = document.getElementById('rs'); if (b) b.classList.add('use'); };
   const L = makeLib({
     x, I, PAL: cfg.pal, SP: cfg.sp, FONT: cfg.font, COLORS: cfg.colors,
-    save: (k, v) => { used(); SV[k] = v; post({ q: 'save', k, v }); },
-    load: k => { used(); return SV[k]; }
+    save: (k, v) => { SV[k] = v; post({ q: 'save', k, v }); },
+    load: k => SV[k]
   });
 
   const fail = e => {
@@ -51,7 +49,7 @@ function eng(code, cfg) {
     b.onpointerdown = e => { e.preventDefault(); K[k] = 1; b.classList.add('on'); if (b.setPointerCapture) b.setPointerCapture(e.pointerId); L.resume(); };
     b.onpointerup = b.onpointercancel = up;
   });
-  /* RESET key: press twice within 3 seconds to make the page forget what this game saved */
+  /* RESET key: press twice within 3 seconds to restart the game from the beginning and forget what it saved */
   const rs = document.getElementById('rs');
   if (rs) {
     let armed = 0;

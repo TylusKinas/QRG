@@ -633,12 +633,10 @@ function eng(code, cfg) {
   let f = 0, last = 0, acc = 0, tc = 0;
 
   const post = m => { try { parent.postMessage(m, '*'); } catch (e) { /* no parent */ } };
-  /* the RESET key appears only for games that use memory */
-  const used = () => { const b = document.getElementById('rs'); if (b) b.classList.add('use'); };
   const L = makeLib({
     x, I, PAL: cfg.pal, SP: cfg.sp, FONT: cfg.font, COLORS: cfg.colors,
-    save: (k, v) => { used(); SV[k] = v; post({ q: 'save', k, v }); },
-    load: k => { used(); return SV[k]; }
+    save: (k, v) => { SV[k] = v; post({ q: 'save', k, v }); },
+    load: k => SV[k]
   });
 
   const fail = e => {
@@ -659,7 +657,7 @@ function eng(code, cfg) {
     b.onpointerdown = e => { e.preventDefault(); K[k] = 1; b.classList.add('on'); if (b.setPointerCapture) b.setPointerCapture(e.pointerId); L.resume(); };
     b.onpointerup = b.onpointercancel = up;
   });
-  /* RESET key: press twice within 3 seconds to make the page forget what this game saved */
+  /* RESET key: press twice within 3 seconds to restart the game from the beginning and forget what it saved */
   const rs = document.getElementById('rs');
   if (rs) {
     let armed = 0;
@@ -751,11 +749,11 @@ const CSP = "default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style
 
 const CONSOLE_CSS = `
 html,body{margin:0;height:100%;background:#1a1a22;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;font:700 11px system-ui,sans-serif;color:#889}
-body{display:flex;flex-direction:column;align-items:center;padding-top:46px}
-#sc{width:min(calc(100vw - 16px),calc((100vh - 270px)*1.0667));border:6px solid #000;border-radius:10px;box-shadow:0 0 0 2px #333;position:relative;background:#000}
+body{display:flex;flex-direction:column;align-items:center;padding-top:6px}
+#sc{box-sizing:border-box;width:min(calc(100vw - 20px),calc((100vh - 252px)*1.0667));border:6px solid #000;border-radius:10px;box-shadow:0 0 0 2px #333;position:relative;background:#000}
 #sc:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(#0000 0 2px,#0002 2px 3px)}
 canvas{display:block;width:100%;aspect-ratio:256/240;image-rendering:pixelated}
-#pad{flex:1;width:100%;max-width:520px;display:flex;align-items:center;justify-content:space-around;padding:0 12px}
+#pad{flex:1 0 150px;width:100%;max-width:520px;display:flex;align-items:center;justify-content:space-around;padding:0 12px}
 #dp{width:136px;height:136px;position:relative}
 #dp:before,#dp:after{content:"";position:absolute;background:#333;border-radius:8px}
 #dp:before{left:0;right:0;top:38px;bottom:38px}#dp:after{top:0;bottom:0;left:38px;right:38px}
@@ -764,8 +762,7 @@ canvas{display:block;width:100%;aspect-ratio:256/240;image-rendering:pixelated}
 #mid b{background:#333;border-radius:20px;padding:8px 12px;color:#aaa;font-size:10px}
 #ab{display:flex;gap:14px;transform:rotate(-18deg)}
 #ab b{width:58px;height:58px;border-radius:50%;background:#a22;color:#fcc;display:flex;align-items:center;justify-content:center;font-size:18px}
-#rs{display:none;font-size:9px!important;background:#222!important;color:#778!important}
-#rs.use{display:block}
+#rs{font-size:9px!important;background:#222!important;color:#778!important}
 b.on{filter:brightness(1.7)}`;
 
 const MINI_CSS = 'body{padding-top:4px}#pad{display:none}#sc{width:min(calc(100vw - 12px),calc((100vh - 16px)*1.0667))}';

@@ -2,7 +2,7 @@
    Strategy: cache first. Updates: the browser re-checks this file on its own; every build changes the version below,
    so a new build installs in the background and replaces the old cache (the new version shows up on the next open).
    GENERATED copy: edit src/pwa/sw.js. */
-const CACHE = 'qrg-cdc200ba09';
+const CACHE = 'qrg-542d1f995a';
 const FILES = ["./","index.php","e.html","manifest.webmanifest","icon-192.png","icon-512.png"];
 
 self.addEventListener('install', e => {

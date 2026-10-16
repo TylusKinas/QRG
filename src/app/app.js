@@ -90,12 +90,6 @@ VIEWS.P = {
 };
 $('fm').onload = () => { try { $('fm').contentWindow.focus(); } catch (e) { /* ignore */ } };
 $('px').onclick = () => App.show(App.prev, App.cur);
-$('pe').onclick = () => App.show(App.prev == 'V' ? 'V' : 'E', App.cur);
-$('pr').onclick = () => {
-  if (!confirm('Forget what this game saved on this device?')) return;
-  Runner.store.clear(Runner.gameId(App.cur.code));
-  Runner.run($('fm'), App.cur.code, { onblocked: () => $('blocked').classList.add('on') });
-};
 $('pu').onclick = () => { $('blocked').classList.remove('on'); Runner.run($('fm'), App.cur.code, { unsafe: true }); };
 
 /* ---- editors and reader ---- */

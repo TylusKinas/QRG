@@ -41,7 +41,10 @@ const CodeEditor = (() => {
     }, 250);
   }
 
-  function changed() { App.cur = { name: App.cur.name, code: ta.value }; preview(); info(); assist(); }
+  function changed() {
+    // the name follows the code: a demo keeps its name, anything edited or typed is "My game"
+    const demo = GAMES.find(g => min(g.code) === min(ta.value));
+    App.cur = { name: demo ? demo.name : 'My game', code: ta.value }; preview(); info(); assist(); }
 
   /* ------------------------------------------------------------ suggestions, signature help, context bar */
   function assist() {
